@@ -1,0 +1,7 @@
+<!--管理者側 サインインのみ-->
+
+<%- if controller_name != 'sessions' %>
+  <%= link_to "Log in", new_session_path(resource_name) %><br />
+<% end %>
+
+<!--下記削除-->

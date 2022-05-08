@@ -1,0 +1,17 @@
+<h1>商品詳細</h1>
+
+<!--画像があるか確認-->
+<% if @item.image.attached? %>
+ <%= image_tag @item.image, size: "200x200" %>
+<% else %>
+ <%= image_tag 'cake', size: "200x200" %>
+<% end %>
+
+
+<p>商品名</p>
+<p>商品説明</p>
+<p>ジャンル</p>
+<p>税込価格</br>
+  (税抜価格)</p>
+<p>販売ステータス</p>
+<p></p>

@@ -1,0 +1,19 @@
+# ja.yml
+ja:
+  enums:
+    order:
+      payment_method:
+        credit_card: 'クレジットカード'
+        transfer: '銀行振込'
+      status:
+        waiting_for_deposit: '入金待ち'
+        payment_confirmation: '入金確認'
+        producrion: '製作中'
+        ready_to_ship: '発送準備中'
+        shipped: '発送済'
+    order_detail:
+      making_status:
+        cannot_be_manufactured: '製造不可'
+        waiting_for_production: '製造待ち'
+        manufacturing: '製造中'
+        completion: '製造完了'
