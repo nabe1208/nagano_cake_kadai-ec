@@ -1,2 +1,21 @@
-<h1>mypage</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<!--名前編集中-->
+<h1><%= @customer.last_name %></h1>
+
+<p>会員ID</p>
+<%= @customer.id %>
+<p>氏名</p>
+
+<p>フリガナ</p>
+
+<p>郵便番号</p>
+<%= @customer.postal_code %>
+<p>住所</p>
+<%= @customer.address %>
+<p>電話番号</p>
+<%= @customer.telephone_number %>
+<p>メールアドレス</p>
+<%= @customer.email %>
+<p>会員ステータス</p>
+
+
+<p><%= link_to "編集する", edit_admin_customer_path(@customer.id) %></p>
