@@ -27,8 +27,10 @@ Rails.application.routes.draw do
     resources :addresses, only:[:index,:create,:edit,:update,:destroy]
     resources :orders, only: [:new,:complete,:index,:show]
     resources :cart_items, only:[:index,:create,:update,:destroy,:destroy_all]
-    get "customers/:id" => 'customers#show', as: "mypage"
-    resources :customers, only:[:edit,:update,:followings,:withdrawal]
+    get "customers/mypage" => 'customers#show', as: "mypage"
+    get "customers/followings" => "customers#followings", as: "followings"
+    patch "customers/withdrawal" => "customers#withdrawal", as: "withdrawal"
+    resources :customers, only:[:edit,:update]
   end
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

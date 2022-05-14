@@ -1,2 +1,18 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<!--編集中 path: public_items_path-->
+<h1>商品一覧(全x件)</h1>
+
+ <% @items.each do |item| %>
+       <tr>
+         <td>
+         <p><%= link_to public_item_path(item.id) do %>
+          <% if item.image.attached? %>
+           <%= image_tag item.image, size: "80x80" %>
+          <% end %>
+         <% end %>
+         </td>
+         <td><%= link_to item.name, public_item_path(item.id) %></td>
+         <td>￥<%= item.price %></td></p>
+       </tr>
+<% end %>
+
+<%= paginate @page %>

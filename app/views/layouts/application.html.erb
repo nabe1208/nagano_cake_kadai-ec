@@ -14,7 +14,7 @@
     <header>
       <% if customer_signed_in? %>
         <li>
-          <%= link_to 'マイページ', public_mypage_path(current_customer.id) %>
+          <%= link_to 'マイページ', public_mypage_path %>
         </li>
         <li>
           <%= link_to '商品一覧', public_items_path %>
@@ -56,6 +56,13 @@
         </li>
       <% end %>
     </header>
-    <%= yield %>
+    <main>
+      <% if flash[:notice] %>
+       <p id = "notice"><%= flash[:notice] %></p>
+      <% end %>
+      <%= yield %>
+    </main>
+    <footer>
+    </footer>
   </body>
 </html>
