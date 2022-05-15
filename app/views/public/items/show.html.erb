@@ -1,13 +1,17 @@
 <!--編集中-->
-<h1><%= @item.name %></h1>
-<p><%= @item.introduction %></p>
-<p>￥<%= @item.price %> (税込)</p>
-
-
-<%= form_with model: @cart_item, url: public_cart_items_path, method: :post  do |f| %>
- <%= f.hidden_field :item_id, :value => @item %>
- <%= f.select :amount, *[1..10],
- include_blank: "個数選択" %>
+<% if @item.image.attached? %>
+ <%= image_tag(@item.image, size:"300x200") %>
+<% else %>
+ <%= image_tag 'cake', size:"300x200" %>
 <% end %>
 
-<%= link_to 'カートに入れる', public_cart_items_path %>
+<h1><%= @item.name %></h1>
+<p><%= @item.introduction %></p>
+<p>￥<%= @item.with_tax_price %> (税込)</p>
+
+  <%= form_with model: @cart_item, url: public_cart_items_path, method: :post do |f| %>
+  <%= f.select :amount, *[1..10],
+  include_blank: "個数選択" %></br>
+  <%= f.hidden_field :item_id, :value => @item.id %>
+  <%= f.submit 'カートに入れる' %>
+ <% end %>

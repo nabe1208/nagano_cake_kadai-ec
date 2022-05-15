@@ -23,10 +23,14 @@ Rails.application.routes.draw do
   namespace :public do
     root to: "homes#top"
     get "home/about" => "homes#about", as: 'about'
+
     resources :items, only: [:index,:show]
     resources :addresses, only:[:index,:create,:edit,:update,:destroy]
     resources :orders, only: [:new,:complete,:index,:show]
-    resources :cart_items, only:[:index,:create,:update,:destroy,:destroy_all]
+
+    delete "cart_items/destroy_all" => 'cart_items#destroy_all', as: "destroy_all"
+    resources :cart_items, only:[:index,:create,:update,:destroy]
+
     get "customers/mypage" => 'customers#show', as: "mypage"
     get "customers/followings" => "customers#followings", as: "followings"
     patch "customers/withdrawal" => "customers#withdrawal", as: "withdrawal"
