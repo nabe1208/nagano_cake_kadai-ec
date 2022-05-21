@@ -1,3 +1,5 @@
+<!--編集中-->
+
 <h1>会員一覧</h1>
 
 <table>
@@ -16,7 +18,7 @@
         <%= customer.id %>
       </td>
       <td>
-        <%= link_to "編集中　氏名", admin_customer_path(customer.id) %>
+        <%= link_to customer.full_name, admin_customer_path(customer.id) %>
       </td>
       <td>
         <%= customer.email %>

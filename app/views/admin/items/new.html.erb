@@ -1,3 +1,4 @@
+<!--編集中-->
 <h1>商品新規登録</h1>
 
 <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
@@ -19,7 +20,10 @@
  <%= f.number_field :price %>
 
  <h4>販売ステータス</h4>
-
+ <%= f.radio_button :is_active, "編集中" %>
+ <%= f.label :item, "販売中" %>
+ <%= f.radio_button :is_active, "編集中" %>
+ <%= f.label :item, "販売停止中" %>
 
  <%= f.submit '新規登録'%>
 <% end %>

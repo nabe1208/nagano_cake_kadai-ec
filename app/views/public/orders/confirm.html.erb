@@ -1,0 +1,12 @@
+<!--編集中-->
+
+<%= form_with model: @order do |f| %>
+  <%= @order.payment_method %>
+  <%= @order.address %>
+<!--  <div class="actions">
+    <%= f.submit '編集に戻る', name: 'back' %>
+  </div>
+  <div class="actions">
+    <%= f.submit '注文を確定する' %>
+  </div>-->
+<% end %>

@@ -1,5 +1,6 @@
 <!--編集中 path: public_items_path-->
-<h1>商品一覧(全x件)</h1>
+<h1>商品一覧</h1>
+(全<%= Item.count %>件)
 
  <% @items.each do |item| %>
        <tr>
