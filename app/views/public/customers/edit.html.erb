@@ -1,7 +1,45 @@
 <h1>会員情報編集</h1>
-<p>氏名</p>
-<p>フリガナ</p>
-<p>郵便番号</p>
-<p>住所</p>
-<p>電話番号</p>
-<p>メールアドレス</p>
+
+<% if @customer.errors.any? %>
+ <ul>
+  <h6>
+    <%= @customer.errors.count %> error prohibited this obj from being updateed:
+  </h6>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+ </ul>
+<% end %>
+
+<%= form_with model: @customer, url: public_customer_path(@customer.id), method: :patch do |f| %>
+ <p>
+   <%= f.label "氏名" %>
+   <%= f.text_field :last_name, id:"inputName" %>
+   <%= f.text_field :first_name, id:"inputName" %>
+ </p>
+  <p>
+   <%= f.label "フリガナ" %>
+   <%= f.text_field :last_name_kana, id:"inputName" %>
+   <%= f.text_field :first_name_kana, id:"inputName" %>
+ </p>
+  <p>
+   <%= f.label "郵便番号" %>
+   <%= f.number_field :postal_code, id:"inputName" %>
+ </p>
+  <p>
+   <%= f.label "住所" %>
+   <%= f.text_area :address, id:"inputName" %>
+ </p>
+  <p>
+   <%= f.label "電話番号" %>
+   <%= f.number_field :telephone_number, id:"inputName" %>
+ </p>
+  <p>
+   <%= f.label "メールアドレス" %>
+   <%= f.text_field :email, id:"inputName" %>
+ </p>
+ <p>
+   <%= f.submit "編集内容を保存" %>
+   <%= link_to "退会する", public_followings_path %>
+ </p>
+<% end %>

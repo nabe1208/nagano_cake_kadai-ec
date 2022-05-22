@@ -1,7 +1,8 @@
 class Public::CartItemsController < ApplicationController
+  before_action :authenticate_customer!
 
   def index
-    @cart_items = current_customer.cart_items.all
+    @cart_items = CartItem.where(customer_id: current_customer.id)
   end
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
@@ -15,11 +16,11 @@ class Public::CartItemsController < ApplicationController
        redirect_to public_cart_items_path
     ## 同名なし
     elsif @cart_item.save
-          @cart_items = current_customer.cart_items.all
+          @cart_items = current_customer.cart_items
           render "index"
     ## 保存不可
     else
-       render "index"
+       redirect_to public_cart_items_path, notice: "カートに商品を追加できませんでした"
     end
 
   end

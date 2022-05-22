@@ -1,7 +1,24 @@
 <h1>マイページ</h1>
 
 <h2>登録情報</h2>
-<p><%= link_to "編集する", edit_public_customer_path(@customer.id) %></p>
+<%= link_to "編集する", edit_public_customer_path(@customer.id) %>
+
+<p>氏名</p>
+ <%= @customer.full_name %>
+<p>カナ</p>
+ <%= @customer.full_name_kana %>
+<p>郵便番号</p>
+ <%= @customer.postal_code %>
+<p>住所</p>
+ <%= @customer.address %>
+<p>電話番号</p>
+ <%= @customer.telephone_number %>
+<p>メールアドレス</p>
+ <%= @customer.email %>
+
 
 <h2>配送先</h2>
+ <%= link_to "一覧を見る", public_addresses_path %>
 <h2>注文履歴</h2>
+ <%= link_to "一覧を見る", public_orders_path %>
+

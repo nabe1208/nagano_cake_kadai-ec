@@ -1,4 +1,15 @@
 <!--編集中-->
+<% if @cart_item.errors.any? %>
+ <ul>
+  <h6>
+    <%= @cart_item.errors.count %> error prohibited this obj from being updateed:
+  </h6>
+    <% @cart_item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+ </ul>
+<% end %>
+
 <% if @item.image.attached? %>
  <%= image_tag(@item.image, size:"300x200") %>
 <% else %>

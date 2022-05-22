@@ -1,7 +1,7 @@
 class CartItem < ApplicationRecord
   belongs_to :customer
   belongs_to :item
-  
+
   ## 数量未記入
   validates :amount, presence: true
   ## アイテム重複不可

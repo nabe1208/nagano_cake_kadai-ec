@@ -9,11 +9,16 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+      redirect_to public_mypage_path, notice: "更新されました"
+    else
+      render :edit
+    end
   end
 
-  # 退会ページ
+  # 退会確認ページ
   def followings
-#    @customer = Customer.find_by(params[:])
   end
 
   def withdrawal
@@ -21,8 +26,13 @@ class Public::CustomersController < ApplicationController
     # is_deletedカラムをtrueに変更→削除フラグ
     @customer.update(is_deleted: true)
     reset_session
-    flash[:notice] = "退会処理を実行致しました"
-    redirect_to public_root_path
+    #flash[:notice] = "退会処理を実行致しました"
+    redirect_to public_root_path, notice: "退会処理を実行致しました"
+  end
+
+  private
+  def customer_params
+    params.require(:customer).permit(:last_name,:last_name_kana,:first_name,:first_name_kana,:postal_code,:address,:telephone_number,:email)
   end
 
 end

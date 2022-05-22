@@ -1,4 +1,18 @@
 <h1>ショッピングカート</h1>
+
+<% @cart_items.each do |cart_item| %>
+ <% if cart_item.errors.any? %>
+  <ul>
+   <h6>
+     <%= cart_item.errors.count %> error prohibited this obj from being updateed:
+   </h6>
+     <% cart_item.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+     <% end %>
+  </ul>
+ <% end %>
+<% end %>
+
 <p><%= link_to 'カートを空にする',public_destroy_all_path, method: :delete %></p>
 
      <table>

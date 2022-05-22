@@ -1,4 +1,53 @@
 <h1>配送先登録/一覧</h1>
-<p>郵便番号(ハイフンなし)</p>
-<p>住所</p>
-<p>宛名</p>
+
+ <% if @address.errors.any? %>
+  <ul>
+    <h6>
+     <%= @address.errors.count %> error prohibited this obj from being saved:
+    </h6>
+    <% @address.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+ <% end %>
+
+<%= form_with model: @address, url: public_addresses_path, method: :post do |f| %>
+<p>
+  <%= f.label "郵便番号(ハイフンなし)" %>
+  <%= f.number_field :postal_code %>
+</p>
+<p>
+  <%= f.label "住所" %>
+  <%= f.text_area :address %>
+</p>
+<p>
+  <%= f.label "宛名" %>
+  <%= f.text_field :name %>
+  <%= f.submit '新規登録' %>
+</p>
+<% end %>
+
+<!--登録住所-->
+ <table>
+  <thead>
+   <tr>
+     <th>郵便番号</th>
+     <th>住所</th>
+     <th>宛名</th>
+     <th></th>
+   </tr>
+  </thead>
+  <tbody>
+   <% @addresses.each do |address| %>
+    <tr>
+     <th><%= address.postal_code %></th>
+     <th><%= address.address %></th>
+     <th><%= address.name %></th>
+     <th>
+       <%= link_to "編集する", edit_public_address_path(address.id) %>
+       <%= link_to "削除する", public_address_path(address.id), method: :delete %>
+     </th>
+    </tr>
+   <% end %>
+  </tbody>
+ </table>
