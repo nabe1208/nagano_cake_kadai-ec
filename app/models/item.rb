@@ -7,7 +7,6 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
-  # validates :is_active, presence: true
 
   # 消費税を求めるメソッド
   # CartItemモデルの小計メソッドと併用

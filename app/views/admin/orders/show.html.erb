@@ -1,2 +1,71 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<!--編集中-->
+
+<h1>注文履歴詳細</h1>
+<table>
+  <tr>
+    <th>購入者</th>
+    <td><%= @order.(last_name + first_name %></td>
+  </tr>
+  <tr>
+    <th>注文日</th>
+    <td><%= @order.created_at %></td>
+  </tr>
+  <tr>
+    <th>配送先</th>
+    <td><%= @order.address_display %></td>
+  </tr>
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <tr>
+    <th>注文ステータス</th>
+    <td>
+      <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
+       <%= f.collection_select :status, Order.all, :id %>
+      <% end %>
+      <%= link_to '更新', admin_order_path(@order.id), method: :patch %>
+    </td>
+  </tr>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.each do |order| %>
+    <tr>
+      <td><%= order.customers_id.cart_items.item.name %></td>
+      <td><%=%></td>
+      <td><%=%></td>
+      <td><%=%></td>
+      <td>
+        <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
+         <%= f.collection_select :making_status, Order.order_details.all, :id %>
+        <% end %>
+      </td>
+      <td><%= link_to '更新', admin_order_path(order.id), method: :patch %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<table>
+  <tr>
+    <th>商品合計</th>
+    <td><%=%></td>
+  </tr>
+    <tr>
+    <th>送料</th>
+    <td><%=%></td>
+  </tr>
+    <tr>
+    <th>請求金額合計</th>
+    <td><%=%></td>
+</table>

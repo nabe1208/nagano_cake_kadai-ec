@@ -1,3 +1,5 @@
+# 注文商品・数量・購入時価格を1-1で
+
 class OrderDetail < ApplicationRecord
   belongs_to :item
   belongs_to :order

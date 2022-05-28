@@ -7,11 +7,13 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
     ## 同名あり
-    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+    if params[:cart_item][:amount] == ""
+       redirect_to public_cart_items_path, notice: "個数が選択されていません"
+    elsif current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
       # カート内：item_id、 newで追加したもの：params[:cart_item][:item_id]
        cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
        cart_item.amount += params[:cart_item][:amount].to_i
-      # さらにidを特定して、cart_item.quantityに追加したparamsを数字として(.to_i)加える。
+      # さらにidを特定して、cart_item.amountに追加したparamsを数字として(.to_i)加える。
        cart_item.save
        redirect_to public_cart_items_path
     ## 同名なし
@@ -19,10 +21,7 @@ class Public::CartItemsController < ApplicationController
           @cart_items = current_customer.cart_items
           render "index"
     ## 保存不可
-    else
-       redirect_to public_cart_items_path, notice: "カートに商品を追加できませんでした"
     end
-
   end
 
   def update

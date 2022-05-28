@@ -1,12 +1,58 @@
-<!--編集中-->
+<h1>注文情報確認</h1>
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sum = 0 %>
+    <% @cart_items.each do |cart_item| %>
+    <tr>
+      <th><%= cart_item.item.name %></th>
+      <th><%= (cart_item.item.price).to_s(:delimited) %></th> <!--delimited・・・3桁で区切るメソッド-->
+      <th><%= cart_item.amount %></th>
+      <th><%= cart_item.subtotal.to_s(:delimited) %></th>
+      <% @sum += cart_item.subtotal %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<table>
+  <tr>
+    <th>送料</th>
+    <td><%= @postage = 800 %></td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%= @sum.to_s(:delimited) %></td>
+  </tr>
+    <tr>
+    <th>請求金額</th>
+    <td><%= (@sum + @postage).to_s(:delimited) %></td>
+  </tr>
+</table>
 
-<%= form_with model: @order do |f| %>
+
+<p>
+  支払方法
   <%= @order.payment_method %>
-  <%= @order.address %>
-<!--  <div class="actions">
-    <%= f.submit '編集に戻る', name: 'back' %>
-  </div>
-  <div class="actions">
-    <%= f.submit '注文を確定する' %>
-  </div>-->
-<% end %>
+</p>
+<p>
+  お届け先
+  <%= @order.address_display %>
+</p>
+<p>
+  <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
+  <!--hidden 隠してデータを送る-->
+   <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+   <%= f.hidden_field :postal_code %>
+   <%= f.hidden_field :address %>
+   <%= f.hidden_field :name %>
+   <%= f.hidden_field :subtotal, value: @subtotal %>
+   <%= f.submit '注文を確定する' %>
+  <% end %>
+</p>

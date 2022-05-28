@@ -4,8 +4,6 @@ class CartItem < ApplicationRecord
 
   ## 数量未記入
   validates :amount, presence: true
-  ## アイテム重複不可
-  validates :item_id, presence: true, uniqueness: true
 
   # 小計を求めるメソッド
   def subtotal

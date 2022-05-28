@@ -11,12 +11,12 @@
         </tr>
        </thead>
      <tbody>
-     <% @order_details.each do |order_detail| %>
+     <% @order_details.each do |detail| %>
        <tr>
          <td></td>
-         <td><%= order_detail.order_detail.order_id.customers_id %></td>
-         <td><%= order_detail.amount %></td>
-         <td><%= order_detail.order_id.status %></td>
+         <td><%= detail.order_detail.order_id.customers_id %></td>
+         <td><%= detail.amount %></td>
+         <td><%= detail.order_id.status %></td>
        </tr>
      <% end %>
      </tbody>

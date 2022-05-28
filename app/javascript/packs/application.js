@@ -8,6 +8,15 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+// 独自css反映方法
+// 作ったstylesheets/application.scssにcssを記述し、packs/application.jsにcssをimportする。
+// (例：import '../stylesheets/mystyle.css')
+import "jquery";
+import "popper.js";
+import "bootstrap";
+import "../stylesheets/application"
+import '@fortawesome/fontawesome-free/js/all'
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
