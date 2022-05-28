@@ -1,5 +1,17 @@
-<!--編集中-->
 <h3>注文情報入力</h3>
+
+<% if @order.errors.any? %>
+ <ul class="alert alert-danger" role="alert">
+  <h6 class="alert-heading">
+    <%= @order.errors.count %> error prohibited this obj from being saved:
+  </h6>
+  <% @order.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+ </ul>
+<% end %>
+
+<!--ラジオボタン、selectはパターン-->
 
  <%= form_with model: @order, url: public_confirm_path, method: :post do |f| %>
 　<h3>支払方法</h3>
