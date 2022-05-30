@@ -1,6 +1,6 @@
 class Admin::HomesController < ApplicationController
 
   def top
-    @order_details = Order.all
+    @orders = Order.all
   end
 end

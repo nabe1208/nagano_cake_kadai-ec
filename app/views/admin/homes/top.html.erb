@@ -11,12 +11,12 @@
         </tr>
        </thead>
      <tbody>
-     <% @order_details.each do |detail| %>
+     <% @orders.each do |order| %>
        <tr>
-         <td></td>
-         <td><%= detail.order_detail.order_id.customers_id %></td>
-         <td><%= detail.amount %></td>
-         <td><%= detail.order_id.status %></td>
+         <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
+         <td><%= order.customer.last_name + order.customer.first_name %></td>
+         <td><%= order.order_details.sum(:amount) %></td>
+         <td><%= order.status_i18n %></td><!--日本語化の記述不明-->
        </tr>
      <% end %>
      </tbody>

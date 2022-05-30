@@ -34,7 +34,10 @@
   </p>
   <p>
     <%= f.label :is_deleted, "会員ステータス" %>
-    <%= f.text_field :is_deleted %>
+     <%= f.radio_button :is_deleted, 0 %>
+     <%= f.label :is_deleted, "有効" %>
+     <%= f.radio_button :is_deleted, 1 %>
+     <%= f.label :is_deleted, "退会" %>
   </p>
   <%= f.submit "変更を保存" %>
 <% end %>

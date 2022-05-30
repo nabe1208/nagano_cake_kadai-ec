@@ -1,24 +1,38 @@
-<!--名前編集中-->
-<h1><%= @customer.last_name %>の会員詳細</h1>
-
-<p>会員ID</p>
-<%= @customer.id %>
-<p>氏名</p>
-
-<p>フリガナ</p>
-
-<p>郵便番号</p>
-<%= @customer.postal_code %>
-<p>住所</p>
-<%= @customer.address %>
-<p>電話番号</p>
-<%= @customer.telephone_number %>
-<p>メールアドレス</p>
-<%= @customer.email %>
-<p>会員ステータス</p>
-
+<h3><%= @customer.full_name %>さんの会員詳細</h3>
 
 <p>
+  会員ID
+  <%= @customer.id %>
+</p>
+<p>
+  氏名
+  <%= @customer.full_name %>
+</p>
+<p>
+  フリガナ
+  <%= @customer.full_name_kana %>
+</p>
+<p>
+  郵便番号
+  <%= @customer.postal_code %>
+</p>
+<p>
+  住所
+  <%= @customer.address %>
+</p>
+<p>
+  電話番号
+  <%= @customer.telephone_number %>
+</p>
+<p>
+  メールアドレス
+  <%= @customer.email %>
+</p>
+<p>
+  会員ステータス
+  <%=%>
+</p>
+<p>
   <%= link_to "編集する", edit_admin_customer_path(@customer.id) %>
-  <%= link_to "注文履歴一覧を見る", root_path %>
+  <%= link_to "注文履歴一覧を見る", admin_root_path %>
 </p>

@@ -1,10 +1,8 @@
-<!--編集中-->
-
 <h1>注文履歴詳細</h1>
 <table>
   <tr>
     <th>購入者</th>
-    <td><%= @order.(last_name + first_name %></td>
+    <td><%= @order.customer.last_name + @order.customer.first_name %></td>
   </tr>
   <tr>
     <th>注文日</th>
@@ -12,18 +10,16 @@
   </tr>
   <tr>
     <th>配送先</th>
-    <td><%= @order.address_display %></td>
+    <td><%= @order.address %></td>
   </tr>
   <tr>
     <th>支払方法</th>
-    <td><%= @order.payment_method %></td>
+    <td><%= @order.payment_method_i18n %></td>
   </tr>
   <tr>
     <th>注文ステータス</th>
     <td>
-      <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
-       <%= f.collection_select :status, Order.all, :id %>
-      <% end %>
+      <!--タブ切り替え 現在の状況(:status)を表示-->
       <%= link_to '更新', admin_order_path(@order.id), method: :patch %>
     </td>
   </tr>
@@ -40,32 +36,33 @@
     </tr>
   </thead>
   <tbody>
-    <% @order.each do |order| %>
+    <% @sum = 0 %>
+    <% @order_detail.each do |order_detail| %>
     <tr>
-      <td><%= order.customers_id.cart_items.item.name %></td>
-      <td><%=%></td>
-      <td><%=%></td>
-      <td><%=%></td>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.with_tax_price.to_s(:delimited) %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= (order_detail.subtotal).to_s(:delimited) %></td>
       <td>
-        <%= form_with model: @order, url: admin_order_path(@order.id) do |f| %>
-         <%= f.collection_select :making_status, Order.order_details.all, :id %>
-        <% end %>
+        <!--タブ切り替え 現在の状況(:making_status)を表示-->
       </td>
-      <td><%= link_to '更新', admin_order_path(order.id), method: :patch %></td>
+      <td><%= link_to '更新', admin_order_path(@order.id), method: :patch %></td>
     </tr>
+    <% @sum += order_detail.subtotal %>
     <% end %>
   </tbody>
 </table>
+<% @postage = 800 %>
 <table>
   <tr>
     <th>商品合計</th>
-    <td><%=%></td>
+    <td><%= @sum.to_s(:delimited) %></td>
   </tr>
     <tr>
     <th>送料</th>
-    <td><%=%></td>
+    <td><%= @postage %></td>
   </tr>
     <tr>
     <th>請求金額合計</th>
-    <td><%=%></td>
-</table>
+    <td><%= (@sum + @postage).to_s(:delimited) %></td>
+  </table>
