@@ -1,2 +1,10 @@
-<h1>user top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<p>
+  ようこそ、ながのCAKEへ！</br>
+  このサイトは、ケーキ販売のECサイトになります。</br>
+  会員でない方も商品の閲覧は出来ますが、</br>
+  購入には会員登録が必要になります。</br>
+</p>
+
+<h3>新着商品</h3>
+<%= @items %>
+<%= link_to '全ての商品を見る>', public_items_path %>
