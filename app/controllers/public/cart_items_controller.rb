@@ -20,7 +20,6 @@ class Public::CartItemsController < ApplicationController
     elsif @cart_item.save
           @cart_items = current_customer.cart_items
           render "index"
-    ## 保存不可
     end
   end
 

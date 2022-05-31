@@ -55,7 +55,7 @@
    <%= f.hidden_field :payment_method, :value => @order.payment_method %>
    <%= f.hidden_field :postage, :value => @order.postage %>
    <%= f.hidden_field :total_payment, :value => @subtotal %>
-   <%= f.hidden_field :status, :value => @order.status %>
+   <%= f.hidden_field :status, {value: 'waiting_for_deposit'} %>
    <%= f.submit '注文を確定する' %>
   <% end %>
 </p>

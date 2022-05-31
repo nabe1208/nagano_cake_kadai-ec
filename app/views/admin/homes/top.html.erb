@@ -16,7 +16,9 @@
          <td><%= link_to order.created_at.strftime('%Y/%m/%d'), admin_order_path(order.id) %></td>
          <td><%= order.customer.last_name + order.customer.first_name %></td>
          <td><%= order.order_details.sum(:amount) %></td>
-         <td><%= order.status_i18n %></td><!--日本語化の記述不明-->
+         <td><!--showでupdateされたら自動更新する記述-->
+          <%= order.status_i18n %>
+         </td>
        </tr>
      <% end %>
      </tbody>

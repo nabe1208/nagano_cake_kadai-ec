@@ -30,7 +30,11 @@
 </p>
 <p>
   会員ステータス
-  <%=%>
+  <% if @customer.is_deleted == false %>
+   <span>退会</span>
+  <% else %>
+   <span>有効</span>
+  <% end %>
 </p>
 <p>
   <%= link_to "編集する", edit_admin_customer_path(@customer.id) %>

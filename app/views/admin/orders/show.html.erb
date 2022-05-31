@@ -19,8 +19,10 @@
   <tr>
     <th>注文ステータス</th>
     <td>
-      <!--タブ切り替え 現在の状況(:status)を表示-->
-      <%= link_to '更新', admin_order_path(@order.id), method: :patch %>
+     <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
+      <%= f.select :status, Order.statuses_i18n.invert, class:"form-control form-control-sm col-6" %>
+      <%= f.submit '更新' %>
+     <% end %>
     </td>
   </tr>
 </table>
@@ -44,9 +46,11 @@
       <td><%= order_detail.amount %></td>
       <td><%= (order_detail.subtotal).to_s(:delimited) %></td>
       <td>
-        <!--タブ切り替え 現在の状況(:making_status)を表示-->
+       <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
+        <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert, class:"form-control form-control-sm col-6" %>
+        <%= f.submit '更新' %>
+       <% end %>
       </td>
-      <td><%= link_to '更新', admin_order_path(@order.id), method: :patch %></td>
     </tr>
     <% @sum += order_detail.subtotal %>
     <% end %>

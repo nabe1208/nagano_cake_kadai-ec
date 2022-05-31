@@ -24,11 +24,12 @@
   <%= f.number_field :price %> 円
  </p>
  <p>
+  <!--boolean型はtrueかfalse-->
   <%= f.label "販売ステータス"%>
-   <%= f.radio_button :is_active, 0 %>
-   <%= f.label "販売中"%>
-   <%= f.radio_button :is_active, 1 %>
-   <%= f.label "販売停止中"%>
+   <%= f.radio_button :is_active, true %>
+   <%= f.label :is_active, '販売中', value: true %>
+   <%= f.radio_button :is_active, false %>
+   <%= f.label :is_active, "販売停止中", value: false %>
  </p>
  <%= f.submit '編集する'%>
 <% end %>

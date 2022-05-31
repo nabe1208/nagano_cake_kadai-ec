@@ -1,4 +1,22 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-/*管理者TOP*/
+/*フォント導入関連記述*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header, h1, nav, .list-comment {
+  font-family: 'Kaushan', cursive, sans-serif;
+}
+header {
+  width: 90%;
+  padding: 15px 0;
+  margin: 30px auto 0;
+  text-align: center;
+  border-top: solid 5px #000000;
+}
+

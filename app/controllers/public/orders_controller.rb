@@ -3,7 +3,6 @@ class Public::OrdersController < ApplicationController
     @order = Order.new
   end
 
-## 5/25追記 下記(create,confirm,address_params)丸写しにつき、後ほど確認
   def create # Orderに保存する内容
    @order = Order.new(order_params)
    cart_item = current_customer.cart_items.all
@@ -56,6 +55,7 @@ class Public::OrdersController < ApplicationController
   end
 
   private
+  # テーブルカラムは基本全て中身に書く
   def order_params
    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :customer_id, :total_payment, :postage, :status)
   end

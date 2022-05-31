@@ -7,8 +7,11 @@
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <script src="https://kit.fontawesome.com/1f14f03d82.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--フォントのダウンロード-->
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
   </head>
 
   <body class="d-flex flex-column vh-100">
@@ -69,6 +72,12 @@
         </div>
        </div>
       </nav>
+      <div>
+       <form class="d-flex">
+        <input class="form-control me-2 type="search" placeholder="Search" aria-label="Search" >
+        <button class="btn btn-outline-success type="submit">Search</button>
+       </form>
+      </div>
     </header>
     <main class="md-auto">
       <% if flash[:notice] %>
@@ -77,18 +86,7 @@
       <%= yield %>
     </main>
     <footer class="shadow-sm">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-12">
-            <ul class="p-0 list-unstyled">
-              <li>
-              </li>
-              <li>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+     ぽ
     </footer>
   </body>
 </html>

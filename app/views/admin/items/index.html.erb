@@ -1,38 +1,52 @@
 <!--admin-->
-<h1>商品一覧</h1>
-
 <!--投稿機能-->
-<%= link_to '追加icon予定', new_admin_item_path %>
-
-<table>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @items.each do |item| %>
-    <tr>
-      <td>
-        <%= item.id %>
-      </td>
-      <td>
-        <%= link_to item.name, admin_item_path(item.id) %>
-      </td>
-      <td>
-        <%= item.price %>
-      </td>
-      <td>
-        <%= item.genre.name %>
-      </td>
-      <td>
-        <%= item.is_active %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="container">
+ <h3>商品一覧
+  <div class="float-md-right">
+   <%= link_to new_admin_item_path, class: "btn btn-denger" do %>
+    <i class="fa-solid fa-plus"></i>
+   <% end %>
+  </div>
+ </h3>
+  <div class="row">
+    <div class="col-md-10">
+    <table class="table">
+     <thead>
+      <tr>
+       <th>商品ID</th>
+       <th>商品名</th>
+       <th>税抜価格</th>
+       <th>ジャンル</th>
+       <th>ステータス</th>
+      </tr>
+     </thead>
+     <tbody>
+     <% @items.each do |item| %>
+      <tr>
+        <td>
+         <%= item.id %>
+        </td>
+        <td>
+         <%= link_to item.name, admin_item_path(item.id) %>
+        </td>
+        <td>
+         <%= item.price.to_s(:delimited) %>
+        </td>
+        <td>
+         <%= item.genre.name %>
+        </td>
+        <td>
+         <% if item.is_active == true %>
+         <span>販売中</span>
+         <% else %>
+         <span>販売停止中</span>
+         <% end %>
+        </td>
+       </tr>
+      <% end %>
+      </tbody>
+     </table>
+     <%= paginate @page %>
+    </div>
+  </div>
+</div>

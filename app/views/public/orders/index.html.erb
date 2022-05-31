@@ -19,7 +19,9 @@
         <%= order.created_at.strftime('%Y/%m/%d') %>
       </td>
       <td><%= order.address %></td>
-      <td><%= order.id %></td><!--編集中-->
+      <% order.order_details.each do |order_detail| %>
+      　<td><%= order_detail.item.name %></td>
+      <% end %>
       <td><%= (order.total_payment + @postage).to_s(:delimited) %>円</td>
       <td><%= order.status %></td>
       <td><%= link_to '表示する', public_order_path(order.id) %></td>

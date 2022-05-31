@@ -1,7 +1,4 @@
-<!--編集中-->
-
 <h1>会員一覧</h1>
-
 <table>
   <thead>
     <tr>
@@ -24,9 +21,14 @@
         <%= customer.email %>
       </td>
       <td>
-        <%= customer.is_deleted %>
+        <% if customer.is_deleted == true %>
+         <span>退会</span>
+        <% else %>
+         <span>有効</span>
+        <% end %>
       </td>
     </tr>
   <% end %>
   </tbody>
 </table>
+
