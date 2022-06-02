@@ -9,14 +9,126 @@
   box-sizing: border-box;
 }
 
+ul li{
+  list-style: none;
+  margin-right: 20px;
+}
+.margin{
+  margin-left: 30px;
+}
+.actions{
+  padding-left: 120px;
+}
+h5{
+  margin-top: 5px;
+}
+
 header, h1, nav, .list-comment {
   font-family: 'Kaushan', cursive, sans-serif;
 }
+
+.navbar-brand{
+  font-size: 25px;
+}
+
 header {
   width: 90%;
   padding: 15px 0;
-  margin: 30px auto 0;
+  margin: 15px auto 0;
   text-align: center;
   border-top: solid 5px #000000;
+}
+
+main {
+  width: 90%;
+  padding: 15px 0;
+  margin: 15px auto 0;
+  border-top: solid 5px #000000;
+}
+
+footer {
+  width: 90%;
+  padding: 15px 0;
+  margin: 15px auto 0;
+  text-align: center;
+  border-top: solid 5px #000000;
+}
+
+h3 {
+  margin-left: 10px;
+}
+/*admin*/
+
+.page-title{
+  padding-left: 15px;
+}
+
+.order-show {
+  justify-content: center;
+}
+.order-show-sum {
+  margin-top: 300px;
+  padding-right: 10px;
+}
+
+/*public*/
+
+.p-log-in{
+  padding-top: 5px;
+}
+
+.top{
+}
+
+.welcome{
+
+  border: solid black;
+  border-radius: 50%; /*正円+角丸*/
+  border-radius: 3px;
+}
+
+.item-top {
+  width: 90%;
+  display: inline-block;
+  flex-wrap: no-wrap;
+  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+.about-title{
+}
+.about{
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/*新規登録*/
+.s-title{
+  padding-right: 15px;
+}
+
+/*商品一覧*/
+.item-index{
+  width: 100%;
+  display: inline-block;
+  flex-wrap: wrap;
+  flex-basis: auto;
+  text-align: left;
+}
+
+.font-d{
+  font-size: 25px;
+}
+.font{
+  font-size: 15px;
+}
+
+/*商品詳細*/
+.image-show{
+  margint: 5 auto 0;
+}
+.item-show{
+  padding-left: 5px;
 }
 

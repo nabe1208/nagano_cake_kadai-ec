@@ -1,28 +1,39 @@
 <!--編集中-->
-<% if @cart_item.errors.any? %>
+<div class="container">
+
+ <% if @cart_item.errors.any? %>
  <ul>
-  <h6>
+   <h6>
     <%= @cart_item.errors.count %> error prohibited this obj from being updateed:
-  </h6>
+   </h6>
     <% @cart_item.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
  </ul>
-<% end %>
-
-<% if @item.image.attached? %>
- <%= image_tag(@item.image, size:"300x200") %>
-<% else %>
- <%= image_tag 'cake', size:"300x200" %>
-<% end %>
-
-<h1><%= @item.name %></h1>
-<p><%= @item.introduction %></p>
-<p>￥<%= @item.with_tax_price %> (税込)</p>
-
-  <%= form_with model: @cart_item, url: public_cart_items_path, method: :post do |f| %>
-  <%= f.select :amount, *[1..10],
-  include_blank: "個数選択" %></br>
-  <%= f.hidden_field :item_id, :value => @item.id %>
-  <%= f.submit 'カートに入れる' %>
  <% end %>
+
+  <div class="row">
+   <div class="col-md-2"></div>
+   <div class="col-md-4 image-show">
+    <% if @item.image.attached? %>
+     <%= image_tag(@item.image, size:"250x150") %>
+    <% else %>
+     <%= image_tag 'cake', size:"250x150" %>
+    <% end %>
+   </div>
+
+   <div class="col-md-6 item-show">
+    <h4><strong><%= @item.name %></strong></h4>
+    <p><%= @item.introduction %></p>
+    <p><strong class="font-d">￥<%= @item.with_tax_price.to_s(:delimited) %></strong><span class="font">(税込)</span></p>
+    <p>
+     <%= form_with model: @cart_item, url: public_cart_items_path, method: :post do |f| %>
+      <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.submit 'カートに入れる' , class:'btn btn-success ml-5'%>
+     <% end %>
+    </p>
+   </div>
+   </div>
+  </div>
+ </div>

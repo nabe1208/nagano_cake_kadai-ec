@@ -1,7 +1,8 @@
-<!--編集中-->
-<h2>注文履歴一覧</h2>
-
-     <table>
+<div class="container">
+ <h3 class="page-title">注文履歴一覧</h3>
+  <div class="row mt-4">
+   <div class="col-md-8">
+    <table class="table">
        <thead>
         <tr>
          <th>購入日時</th>
@@ -16,10 +17,16 @@
          <td><%= link_to order.created_at.strftime('%Y/%m/%d'), admin_order_path(order.id) %></td>
          <td><%= order.customer.last_name + order.customer.first_name %></td>
          <td><%= order.order_details.sum(:amount) %></td>
-         <td><!--showでupdateされたら自動更新する記述-->
+         <td>
           <%= order.status_i18n %>
          </td>
        </tr>
      <% end %>
      </tbody>
-   </table>
+    </table>
+    <%= paginate @orders %>
+   </div>
+  </div>
+</div>
+
+

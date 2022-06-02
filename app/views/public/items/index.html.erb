@@ -1,19 +1,35 @@
 <!--編集中 path: public_items_path-->
-<h1>商品一覧</h1>
-(全<%= Item.count %>件)
-
- <% @items.each do |item| %>
+<div class="container">
+ <div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-8">
+   <p class="font-d">商品一覧<span class="font">(全<%= Item.count %>件)</span></p>
+   <div class="item-index">
+   <% @items.each do |item| %>
        <tr>
          <td>
-         <p><%= link_to public_item_path(item.id) do %>
-          <% if item.image.attached? %>
-           <%= image_tag item.image, size: "80x80" %>
+          <%= link_to public_item_path(item.id) do %>
+           <% if item.image.attached? %>
+            <%= image_tag item.image, size: "160x100" %>
+           <% else %>
+            <%= image_tag 'cake', size:"160x100" %>
+           <% end %>
           <% end %>
-         <% end %>
          </td>
-         <td><%= link_to item.name, public_item_path(item.id) %></td>
-         <td>￥<%= item.price %></td></p>
-       </tr>
-<% end %>
-
-<%= paginate @page %>
+        </tr>
+        <tr>
+          <td>
+           <p>
+           <%= link_to item.name, public_item_path(item.id) %>
+           </p>
+           <p>
+           ￥<%= item.price %>
+           </p>
+          </td>
+        </tr>
+   <% end %>
+   </div>
+   <%= paginate @page %>
+  </div>
+ </div>
+</div>

@@ -1,35 +1,41 @@
-<h1>商品詳細</h1>
+<div class="container">
+<h3>商品詳細</h3>
+ <div class="row">
+  <div class="col-md-3 mt-5">
+  <!--画像があるか確認-->
+  <% if @item.image.attached? %>
+   <%= image_tag @item.image, size: "250x200" %>
+  <% else %>
+   <%= image_tag 'cake', size: "250x200" %>
+  <% end %>
+  </div>
+  <div class="col-md-8 offset-md-1 mt-5">
+  <p><strong class="label">商品名</strong>
+   <%= @item.name %>
+  </p>
+  <p><strong class="label">商品説明</strong>
+   <%= @item.introduction %>
+  </p>
+  <p><strong class="label">ジャンル</strong>
+   <%= @genre.name %>
+  </p>
+  <p>
+   <strong class="label">税込価格</br>
+   (税抜価格)</strong>
+   <%= (@item.with_tax_price).to_s(:delimited) %>
+   (<%= @item.price.to_s(:delimited) %>) 円
+  </p>
+  <p>
+   <strong class="label">販売ステータス</strong>
+   <% if @item.is_active == true %>
+    <span>販売中</span>
+   <% else %>
+    <span>販売停止中</span>
+   <% end %>
+  </p>
+  <p><%= link_to '編集する', edit_admin_item_path(@item.id), class:"btn btn-success btn-lg mt-3" %></p>
+  </div>
+ </div>
+</div>
 
-<!--画像があるか確認-->
-<% if @item.image.attached? %>
- <%= image_tag @item.image, size: "200x200" %>
-<% else %>
- <%= image_tag 'cake', size: "200x200" %>
-<% end %>
 
-<p>
- 商品名
- <%= @item.name %>
-</p>
-<p>
- 商品説明
- <%= @item.introduction %>
-</p>
-<p>
- ジャンル
- <%= @genre.name %>
-</p>
-<p>
- 税込価格</br>
- (税抜価格)
- <%= @item.price.to_s(:delimited) %> 円
-</p>
-<p>
- 販売ステータス
- <% if @item.is_active == true %>
-  販売中
- <% else %>
- 販売停止中
- <% end %>
-</p>
-<p><%= link_to '編集する', edit_admin_item_path(@item.id) %></p>

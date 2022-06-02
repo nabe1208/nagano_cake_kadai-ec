@@ -1,35 +1,40 @@
-<h1>商品編集</h1>
+<div class="container">
+ <h3>商品編集</h3>
+ <div class="row">
+  <%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
 
-<%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
-
- <p>
-  <%= f.label "商品画像" %>
-  <%= f.file_field :image, accept: "/*" %>
- </p>
- <p>
-  <%= f.label "商品名" %>
-  <%= f.text_field :name, id:"inputName" %>
- </p>
- <p>
-  <%= f.label "商品説明" %>
-  <%= f.text_area :introduction, id:"inputIntroduction" %>
- </p>
- <p>
-  <%= f.label "ジャンル" %>
-  <%= f.collection_select :genre, Genre.all, :id, :name,
-  {selected: @item.genre.name} %>
- </p>
- <p>
-  <%= f.label "税抜価格" %>
-  <%= f.number_field :price %> 円
- </p>
- <p>
+  <p>
+   <%= f.label "商品画像", class:'ml-5 pr-2' %>
+   <%= f.file_field :image, accept: "/*", class:'ml-3' %>
+  </p>
+  <p>
+   <%= f.label "商品名" , class:'ml-5 pr-4'%>
+   <%= f.text_field :name, id:"inputName", class:'ml-3' %>
+  </p>
+  <p>
+   <%= f.label "商品説明" , class:'ml-5 pr-2'%>
+   <%= f.text_area :introduction, id:"inputIntroduction", class:'ml-3' %>
+  </p>
+  <p>
+   <%= f.label "ジャンル" , class:'ml-5 pr-2'%>
+   <%= f.collection_select :genre, Genre.all, :id, :name,
+   {selected: @item.genre.name} , class:'ml-3'%>
+  </p>
+  <p>
+   <%= f.label "税抜価格" , class:'ml-5 pr-2'%>
+   <%= f.number_field :price , class:'ml-3'%> 円
+  </p>
+  <p>
   <!--boolean型はtrueかfalse-->
-  <%= f.label "販売ステータス"%>
-   <%= f.radio_button :is_active, true %>
-   <%= f.label :is_active, '販売中', value: true %>
-   <%= f.radio_button :is_active, false %>
-   <%= f.label :is_active, "販売停止中", value: false %>
- </p>
- <%= f.submit '編集する'%>
-<% end %>
+   <%= f.label "販売ステータス", class:'ml-5 pr-3'%>
+    <%= f.radio_button :is_active, true %>
+    <%= f.label :is_active, '販売中', value: true%>
+    <%= f.radio_button :is_active, false %>
+    <%= f.label :is_active, "販売停止中", value: false%>
+  </p>
+  <p class="ml-5">
+   <%= f.submit '変更を保存', class:'btn btn-success btn-lg mt-3 ml-5'%>
+  </p>
+ <% end %>
+ </div>
+</div>

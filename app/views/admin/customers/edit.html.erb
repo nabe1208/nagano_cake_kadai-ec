@@ -1,43 +1,50 @@
-<!--編集中-->
-<h1><%= @customer.full_name %>さんの会員情報編集</h1>
-
-<%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-  <p>
-    <%= f.label :id, "会員ID"%>
-    <%= @customer.id %>
-  </p>
-  <p>
-    <%= f.label :full_name, "氏名" %>
-    <%= f.text_field :last_name %>
-    <%= f.text_field :first_name %>
-  </p>
-  <p>
-    <%= f.label :full_name_kana, "フリガナ"%>
-    <%= f.text_field :last_name_kana %>
-    <%= f.text_field :first_name_kana %>
-  </p>
-  <p>
-    <%= f.label :postal_code, "郵便番号" %>
-    <%= f.text_field :postal_code %>
-  </p>
-  <p>
-    <%= f.label :address, "住所" %>
-    <%= f.text_area :address %>
-  </p>
-  <p>
-    <%= f.label :telephone_number, "携帯電話" %>
-    <%= f.text_field :telephone_number %>
-  </p>
-  <p>
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :is_deleted, "会員ステータス" %>
-     <%= f.radio_button :is_deleted, false %>
-     <%= f.label :is_deleted, "有効", value: false %>
-     <%= f.radio_button :is_deleted, true %>
-     <%= f.label :is_deleted, "退会", true %>
-  </p>
-  <%= f.submit "変更を保存" %>
+<div class="container">
+ <h3><%= @customer.full_name %>さんの会員情報編集</h3>
+  <div class="row">
+    <div class="col-md-10">
+      <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
+      <p>
+       <%= f.label :id, "会員ID", class:'control-label ml-3 mr-5 mt-4'%>
+       <%= @customer.id %>
+      </p>
+      <p class="mr-5">
+       <%= f.label :full_name, "氏名", class:'control-label ml-3 mr-5' %>
+       <%= f.text_field :last_name , class:"ml-5" %>
+       <%= f.text_field :first_name , class:"ml-5" %>
+      </p>
+      <p>
+       <%= f.label :full_name_kana, "フリガナ", class:'control-label ml-3 mr-3'%>
+       <%= f.text_field :last_name_kana, class:"ml-5" %>
+       <%= f.text_field :first_name_kana , class:"ml-5" %>
+      </p>
+      <p>
+       <%= f.label :postal_code, "郵便番号", class:'ml-3 mr-3' %>
+       <%= f.text_field :postal_code, class:"ml-5" %>
+      </p>
+      <p class="mr-5">
+       <%= f.label :address, "住所", class:'ml-3 mr-5' %>
+       <%= f.text_area :address, class:"ml-5" %>
+      </p>
+      <p>
+       <%= f.label :telephone_number, "携帯電話", class:'ml-3 mr-3' %>
+       <%= f.text_field :telephone_number, class:"ml-5" %>
+      </p>
+      <p>
+       <%= f.label :email, "メールアドレス", class:'ml-3 mr-1' %>
+       <%= f.text_field :email, class:"ml-3" %>
+      </p>
+      <p>
+       <%= f.label :is_deleted, "会員ステータス", class:'ml-3 mr-1' %>
+        <%= f.radio_button :is_deleted, false, class:"ml-3" %>
+        <%= f.label :is_deleted, "有効", value: false %>
+        <%= f.radio_button :is_deleted, true, class:"ml-3"  %>
+        <%= f.label :is_deleted, "退会", value: true %>
+      </p>
+      <p class="ml-5 pl-5">
+        <%= f.submit "変更を保存", class:"btn btn-success btn-lg mt-5" %>
+      </p>
 <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,14 +1,14 @@
 <!--admin-->
 <!--投稿機能-->
 <div class="container">
- <h3>商品一覧
+ <h3 class="py-1">商品一覧
   <div class="float-md-right">
    <%= link_to new_admin_item_path, class: "btn btn-denger" do %>
     <i class="fa-solid fa-plus"></i>
    <% end %>
   </div>
  </h3>
-  <div class="row">
+  <div class="row-pd-3">
     <div class="col-md-10">
     <table class="table">
      <thead>
@@ -46,7 +46,9 @@
       <% end %>
       </tbody>
      </table>
-     <%= paginate @page %>
+     <div>
+      <span class="align-middle"><%= paginate @items %></span>
+     </div>
     </div>
   </div>
 </div>
