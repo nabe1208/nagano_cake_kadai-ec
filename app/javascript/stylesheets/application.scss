@@ -13,9 +13,7 @@ ul li{
   list-style: none;
   margin-right: 20px;
 }
-.margin{
-  margin-left: 30px;
-}
+
 .actions{
   padding-left: 120px;
 }
@@ -23,6 +21,7 @@ h5{
   margin-top: 5px;
 }
 
+/*fontデザイン*/
 header, h1, nav, .list-comment {
   font-family: 'Kaushan', cursive, sans-serif;
 }
@@ -55,7 +54,8 @@ footer {
 }
 
 h3 {
-  margin-left: 10px;
+  margin-left: 30px;
+  margin-bottom: 15px;
 }
 /*admin*/
 
@@ -77,9 +77,6 @@ h3 {
   padding-top: 5px;
 }
 
-.top{
-}
-
 .welcome{
 
   border: solid black;
@@ -95,8 +92,6 @@ h3 {
   justify-content: space-between;
 }
 
-.about-title{
-}
 .about{
   width: 90%;
   margin: 0 auto;
@@ -132,3 +127,45 @@ h3 {
   padding-left: 5px;
 }
 
+/*カート*/
+.link{
+  display: block;/*span*/
+  justify-content: space-between;
+}
+
+.link-right{
+  margin-left: 75%;
+  margin-bottom: 40px;
+
+}
+.margin{
+  margin-left: 40%;
+}
+
+.margin-2{
+  margin-left: 200px;
+}
+
+/*情報入力*/
+.label{
+  margin-right: 22%;
+}
+/*確認画面*/
+.radio_button{
+  margin-left: 30px;
+}
+.radio_body{
+  margin-left: 50px;
+}
+
+/*confirm*/
+/*complete*/
+.complete{
+  text-align: center;
+  margin: 25% auto;
+}
+
+/*退会*/
+.follow{
+  text-align: center;
+}

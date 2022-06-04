@@ -1,5 +1,7 @@
-<h1>会員情報編集</h1>
-
+<div class="conteiner">
+ <h3>会員情報編集</h3>
+ <div class="row">
+  <div class="col-md-10">
 <% if @customer.errors.any? %>
  <ul>
   <h6>
@@ -13,33 +15,39 @@
 
 <%= form_with model: @customer, url: public_customer_path(@customer.id), method: :patch do |f| %>
  <p>
-   <%= f.label "氏名" %>
-   <%= f.text_field :last_name, id:"inputName" %>
+   <span class="label"><%= f.label "氏名", class:'mr-4 pr-2' %></span>
+   <%= f.text_field :last_name, id:"inputName", class:'mr-2' %>
    <%= f.text_field :first_name, id:"inputName" %>
  </p>
   <p>
-   <%= f.label "フリガナ" %>
-   <%= f.text_field :last_name_kana, id:"inputName" %>
+   <span class="label"><%= f.label "フリガナ" %></span>
+   <%= f.text_field :last_name_kana, id:"inputName", class:'mr-2' %>
    <%= f.text_field :first_name_kana, id:"inputName" %>
  </p>
   <p>
-   <%= f.label "郵便番号" %>
-   <%= f.number_field :postal_code, id:"inputName" %>
+   <span class="label"><%= f.label "郵便番号" %></span>
+   <%= f.number_field :postal_code, id:"inputName", class:'mr-2' %>
  </p>
   <p>
-   <%= f.label "住所" %>
-   <%= f.text_area :address, id:"inputName" %>
+   <span class="label"><%= f.label "住所", class:'mr-4 pr-2'%></span>
+   <%= f.text_field :address, id:"inputName", class:'pr-5', size:'50' %>
  </p>
   <p>
-   <%= f.label "電話番号" %>
-   <%= f.number_field :telephone_number, id:"inputName" %>
+   <span class="label"><%= f.label "電話番号" %></span>
+   <%= f.number_field :telephone_number, id:"inputName", class:'mr-2' %>
  </p>
   <p>
-   <%= f.label "メールアドレス" %>
-   <%= f.text_field :email, id:"inputName" %>
+   <%= f.label "メールアドレス", class:'mr-5 pr-4' %>
+   <%= f.text_field :email, id:"inputName", class:'ml-5' %>
  </p>
- <p>
-   <%= f.submit "編集内容を保存" %>
-   <%= link_to "退会する", public_followings_path %>
+ <p class="margin-2">
+   <%= f.submit "編集内容を保存", class:"btn btn-success pr-5 pl-5 ml-4" %>
+   <%= link_to "退会する", public_followings_path, class:'btn btn-warning ml-5' %>
  </p>
 <% end %>
+
+  </div>
+ </div>
+</div>
+
+

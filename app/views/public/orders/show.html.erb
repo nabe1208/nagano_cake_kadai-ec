@@ -1,8 +1,9 @@
-<!--編集中-->
-<h1>注文履歴詳細</h1>
-
-<p>注文情報</p>
-<table>
+<div class="container">
+ <h3>注文履歴詳細</h3>
+ <div class="row">
+  <div class="col-md-8">
+<h6><strong>注文情報</strong></h6>
+<table class="table">
  <tr>
    <th>注文日</th>
    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
@@ -17,12 +18,12 @@
  </tr>
  <tr>
    <th>ステータス</th>
-   <td><%= @order.status %></td>
+   <td><%= @order.status_i18n %></td>
  </tr>
 </table>
 
-<p>注文内容</p>
-<table>
+<h6><strong>注文内容</strong></h6>
+<table class="table">
  <thead>
   <tr>
    <th>商品</th>
@@ -43,9 +44,12 @@
  </tbody>
 </table>
 
-<p>請求情報</p>
+  </div>
+  <div class="col-md-4">
+
+<h6><strong>請求情報</strong></h6>
 <% @postage = 800 %>
-<table>
+<table class="table">
   <tr>
    <th>商品合計</th>
    <td><%= @order.total_payment.to_s(:delimited) %></td>
@@ -59,3 +63,11 @@
    <td><%= (@order.total_payment + @postage).to_s(:delimited) %></td>
   </tr>
 </table>
+  </div>
+
+
+
+ </div>
+</div>
+
+

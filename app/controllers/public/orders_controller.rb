@@ -1,10 +1,19 @@
 class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
+    @customer = current_customer.address
   end
 
   def create # Orderに保存する内容
    @order = Order.new(order_params)
+   if params[:order][:address_select] == "2"
+     @address = Address.new
+     @address.customer_id = current_customer.id
+     @address.name = @order.name
+     @address.postal_code = @order.postal_code
+     @address.address = @order.address
+     @address.save
+   end
    cart_item = current_customer.cart_items.all
    @order.save
      current_customer.cart_items.each do |cart_item|
@@ -38,20 +47,20 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     ## 合計金額の処理(cart_itemモデル定義method使用)
     @subtotal = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
-    ## 配列オブジェクト.inject {|初期値, 要素| ブロック処理 }
+    ## eachの一行表記 配列オブジェクト.inject {|初期値, 要素| ブロック処理 }
   end
 
   def complete
   end
 
   def index
+    #@page = Order.all.page(params[:page]).per(10)
     @orders = Order.where(customer_id: current_customer.id)
   end
 
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    #binding.pry
   end
 
   private

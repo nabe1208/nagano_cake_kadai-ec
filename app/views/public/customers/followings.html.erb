@@ -1,10 +1,19 @@
 <!--PATH: public_followings_path-->
-<h1>本当に退会しますか？</h1>
-
-<p>退会すると、会員登録情報や</p>
-<p>これまでの購入履歴が閲覧できなくなります。</p>
-<p>退会する場合は、「退会する」をクリックしてください。</p>
-
-<%= link_to "退会しない",public_mypage_path %>
-<%= link_to "退会する", public_withdrawal_path, method: :patch %>
-
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 follow">
+    <h5 class="page-title"><strong>本当に退会しますか？</strong></h5>
+    <p>
+     退会すると、会員登録情報や</br>
+     これまでの購入履歴が閲覧できなくなります。</br>
+     退会する場合は、「退会する」をクリックしてください。</br>
+    </p>
+    <p>
+     <%= link_to "退会しない",public_mypage_path, class:"btn btn-primary pl-3 pr-3 mr-3" %>
+     <%= link_to "退会する", public_withdrawal_path, method: :patch, class:"btn btn-warning pl-4 pr-4" %>
+    </p>
+   </div>
+   <div class="col-md-2"></div>
+  </div>
+</div>

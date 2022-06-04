@@ -5,9 +5,9 @@
   <div class="col-md-8">
    <p class="font-d">商品一覧<span class="font">(全<%= Item.count %>件)</span></p>
    <div class="item-index">
-   <% @items.each do |item| %>
-       <tr>
-         <td>
+    <div class="row">
+   <% @page.each do |item| %>
+   <div class="col-md-3">
           <%= link_to public_item_path(item.id) do %>
            <% if item.image.attached? %>
             <%= image_tag item.image, size: "160x100" %>
@@ -15,19 +15,15 @@
             <%= image_tag 'cake', size:"160x100" %>
            <% end %>
           <% end %>
-         </td>
-        </tr>
-        <tr>
-          <td>
            <p>
            <%= link_to item.name, public_item_path(item.id) %>
            </p>
            <p>
            ￥<%= item.price %>
            </p>
-          </td>
-        </tr>
+           </div>
    <% end %>
+   </div>
    </div>
    <%= paginate @page %>
   </div>

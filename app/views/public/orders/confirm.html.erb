@@ -1,43 +1,50 @@
-<h1>注文情報確認</h1>
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sum = 0 %>
-    <% @cart_items.each do |cart_item| %>
-    <tr>
-      <th><%= cart_item.item.name %></th>
-      <th><%= (cart_item.item.with_tax_price).to_s(:delimited) %></th> <!--delimited・・・3桁で区切るメソッド-->
-      <th><%= cart_item.amount %></th>
-      <th><%= cart_item.subtotal.to_s(:delimited) %></th>
-      <% @sum += cart_item.subtotal %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<table>
-  <tr>
-    <th>送料</th>
-    <td><%= @postage = 800 %></td>
-  </tr>
-  <tr>
-    <th>商品合計</th>
-    <td><%= @sum.to_s(:delimited) %></td>
-  </tr>
-    <tr>
-    <th>請求金額</th>
-    <td><%= (@sum + @postage).to_s(:delimited) %></td>
-  </tr>
-</table>
-
-
-<p>
+<div class="container">
+  <h3>注文情報確認</h3>
+  <div class="row">
+    <div class="col-md-8">
+     <table border="0">
+       <tr>
+         <td>
+           <table table="1" align="left" cellspacing="20">
+             <thead>
+              <tr>
+               <th>商品名</th>
+               <th>単価(税込)</th>
+               <th>数量</th>
+               <th>小計</th>
+              </tr>
+             </thead>
+             <tbody>
+            <% @sum = 0 %>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+               <td><%= cart_item.item.name %></td>
+               <td><%= (cart_item.item.with_tax_price).to_s(:delimited) %></td> <!--delimited・・・3桁で区切るメソッド-->
+               <td><%= cart_item.amount %></td>
+               <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+               <% @sum += cart_item.subtotal %>
+              </tr>
+            <% end %>
+            </tbody>
+           </table>
+           <table table="1">
+              <tr>
+               <th>送料</th>
+               <td><%= @postage = 800 %></td>
+              </tr>
+              <tr>
+               <th>商品合計</th>
+               <td><%= @sum.to_s(:delimited) %></td>
+              </tr>
+              <tr>
+               <th>請求金額</th>
+               <td><%= (@sum + @postage).to_s(:delimited) %></td>
+              </tr>
+           </table>
+       </td>
+      </tr>
+     </table>
+     <p>
   支払方法
   <%= @order.payment_method %>
 </p>
@@ -56,6 +63,11 @@
    <%= f.hidden_field :postage, :value => @order.postage %>
    <%= f.hidden_field :total_payment, :value => @subtotal %>
    <%= f.hidden_field :status, {value: 'waiting_for_deposit'} %>
-   <%= f.submit '注文を確定する' %>
+   <!--newのaddresseをcreateに送る(モデル保存のため)-->
+   <%= f.hidden_field :address_select, :value => params[:order][:s_address] %>
+   <%= f.submit '注文を確定する', class:"btn btn-success pr-4 pl-4" %>
   <% end %>
 </p>
+  </div>
+ </div>
+</div>
