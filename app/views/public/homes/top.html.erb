@@ -1,39 +1,37 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3 search">
-    </div>
-    <div class="col-md-9 top">
-      <p class="welcome">
-      ようこそ、ながのCAKEへ！</br>
-      このサイトは、ケーキ販売のECサイトになります。</br>
-      会員でない方も商品の閲覧は出来ますが、</br>
-      購入には会員登録が必要になります。</br>
-     </p>
-     <h3>新着商品</h3>
-     <table>
-     <% @items.each do |item| %>
-     <tr>
-       <td>
-       <div class="item-top">
-        <% if item.image.attached? %>
-         <%= image_tag(item.image, size:"150x100") %>
-        <% else %>
-         <%= image_tag 'cake', size:"150x100" %>
-        <% end %>
-       </td>
-     </tr>
-     <tr>
-       <td>
-         <p><%= item.name %></p>
-         <p><%= item.price %></p>
-       </td>
-     </tr>
-     <% end %>
-     </tr>
+   <div class="col-md-3 search">
+   </div>
+   <div class="col-md-9">
+    <div class="top-image">
+     <%= image_tag 'cake.jpg', size:"600x350" %>
+       <div class="col-md-6 welcome">
+        ようこそ、ながのCAKEへ！</br>
+        このサイトは、ケーキ販売のECサイトになります。</br>
+        会員でない方も商品の閲覧は出来ますが、</br>
+        購入には会員登録が必要になります。</br>
+       </div>
      </div>
-     </table>
-     <%= link_to '全ての商品を見る>', public_items_path %>
-
+     <h3 class="new"><strong>新着商品</strong></h3>
+     <div class="row">
+     <% @items.each do |item| %>
+        <div class="col-md-3 item-top">
+         <% if item.image.attached? %>
+          <%= image_tag(item.image, size:"150x100") %>
+         <% else %>
+          <%= image_tag 'cake', size:"150x100" %>
+         <% end %>
+          <p>
+            <%= item.name %></br>
+            <%= item.price %>
+          </p>
+        </div>
+      <% end %>
+      <div class="col-md-9"></div>
+      <div class="col-md-3">
+       <span class="link-2"><%= link_to '全ての商品を見る>', public_items_path %></span>
+      </div>
     </div>
+   </div>
   </div>
 </div>

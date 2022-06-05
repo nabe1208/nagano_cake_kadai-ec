@@ -23,63 +23,66 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
-            <li class="nav-item">
-             <%= link_to 'マイページ', public_mypage_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to '商品一覧', public_items_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to 'カート', public_cart_items_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
-            </li>
+            <div class="align-center">
+             ようこそ、<%= current_customer.last_name %>さん！
+            </div>
+            <ul class="navbar-nav ml-auto">
+             <li class="nav-item">
+              <%= link_to 'マイページ', public_mypage_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to '商品一覧', public_items_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to 'カート', public_cart_items_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+             </li>
             <% elsif admin_signed_in? %>
-            <li class="nav-item">
-             <%= link_to '商品一覧', admin_items_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to '注文履歴一覧', admin_root_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
-            </li>
+             <li class="nav-item">
+              <%= link_to '商品一覧', admin_items_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to '注文履歴一覧', admin_root_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to 'ジャンル一覧', admin_genres_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+             </li>
             <% else %>
-            <li class="nav-item">
-             <%= link_to 'About', public_about_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to '商品一覧', public_items_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to '新規登録', new_customer_registration_path, class: 'nav-link text-dark' %>
-            </li>
-            <li class="nav-item">
-             <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-dark' %>
-            </li>
+             <li class="nav-item">
+              <%= link_to 'About', public_about_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to '商品一覧', public_items_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to '新規登録', new_customer_registration_path, class: 'nav-link text-dark' %>
+             </li>
+             <li class="nav-item">
+              <%= link_to 'ログイン', new_customer_session_path, class: 'nav-link text-dark' %>
+             </li>
             <% end %>
-           </ul>
+            </ul>
           </div>
         </div>
        </div>
       </nav>
-      <div class="float-right">
+      <div class="float-right mr-5">
        <form class="d-flex">
         <input class="form-control-md-5 me-2 type="search" placeholder="Search" aria-label="Search" >
         <button class="btn btn-outline-success type="submit"><i class="<i class="fa-light fa-magnifying-glass-dollar"></i>"</button>
        </form>
       </div>
     </header>
-    <main class="md-auto">
+    <main class="main pt-3">
       <% if flash[:notice] %>
        <p id = "notice"><%= flash[:notice] %></p>
       <% end %>
