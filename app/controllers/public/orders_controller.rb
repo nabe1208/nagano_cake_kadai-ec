@@ -1,7 +1,11 @@
 class Public::OrdersController < ApplicationController
   def new
-    @order = Order.new
-    @customer = current_customer.address
+    if current_customer.cart_items.present? #存在しているかどうか
+     @order = Order.new
+     @customer = current_customer.address
+    else
+      redirect_to public_cart_items_path
+    end
   end
 
   def create # Orderに保存する内容

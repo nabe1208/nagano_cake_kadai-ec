@@ -12,9 +12,8 @@ class Admin::OrdersController < ApplicationController
     ## 入金確認(status変更)したら着手不可から製作待ち(making_status変更)へ
     ## 1つでも製作中(making_status変更)になったら、製作中(status)
     ## 1つでも製作完了(making_status)になったら、発送準備中(status)
-    if @order.update(order_params)
-      @order_detail.update_all(making_status: 1)
-    end
+    @order.update(order_params)
+    @order_detail.update_all(making_status: 1) if  @order.status == 'payment_confirmation'
     redirect_to admin_order_path(@order.id), notice: 'ステータスを更新しました'
   end
 

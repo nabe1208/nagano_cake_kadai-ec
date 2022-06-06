@@ -10,8 +10,11 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    @item.save
-    redirect_to admin_item_path(@item.id)
+    if @item.save
+     redirect_to admin_item_path(@item.id), notice:"商品を1件登録しました"
+    else
+     redirect_to new_admin_item_path, notice:"情報が入力されていません"
+    end
   end
 
   def show

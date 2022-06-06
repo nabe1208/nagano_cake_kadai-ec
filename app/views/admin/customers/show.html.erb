@@ -24,7 +24,7 @@
        <%= @customer.email %>
       </p>
       <p><strong class="ml-5 mr-1">会員ステータス</strong>
-       <% if @customer.is_deleted == false %>
+       <% if @customer.is_deleted == true %>
         <span>退会</span>
        <% else %>
         <span>有効</span>

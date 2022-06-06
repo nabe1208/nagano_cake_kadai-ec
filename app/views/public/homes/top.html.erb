@@ -17,9 +17,9 @@
      <% @items.each do |item| %>
         <div class="col-md-3 item-top">
          <% if item.image.attached? %>
-          <%= image_tag(item.image, size:"150x100") %>
+          <%= link_to image_tag(item.image, size:"150x100"), public_item_path(item.id) %>
          <% else %>
-          <%= image_tag 'cake', size:"150x100" %>
+          <%= link_to image_tag('cake', size:"150x100"), public_item_path(item.id) %>
          <% end %>
           <p>
             <%= item.name %></br>

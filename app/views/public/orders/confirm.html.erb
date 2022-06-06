@@ -1,11 +1,8 @@
 <div class="container">
   <h3>注文情報確認</h3>
   <div class="row">
-    <div class="col-md-8">
-     <table border="0">
-       <tr>
-         <td>
-           <table table="1" align="left" cellspacing="20">
+    <div class="col-md-7">
+           <table class="table">
              <thead>
               <tr>
                <th>商品名</th>
@@ -27,7 +24,9 @@
             <% end %>
             </tbody>
            </table>
-           <table table="1">
+     </div>
+     <div class="col-md-5">
+           <table class="table">
               <tr>
                <th>送料</th>
                <td><%= @postage = 800 %></td>
@@ -41,33 +40,31 @@
                <td><%= (@sum + @postage).to_s(:delimited) %></td>
               </tr>
            </table>
-       </td>
-      </tr>
-     </table>
+     </div>
+     <div class="col-md-7">
      <p>
-  支払方法
-  <%= @order.payment_method %>
-</p>
-<p>
-  お届け先
-  <%= @order.postal_code + @order.address + @order.name %>
-</p>
-<p>
-  <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
-  <!--hidden 隠してデータを送る-->
-   <%= f.hidden_field :customer_id, :value => current_customer.id %>
-   <%= f.hidden_field :postal_code, :value => @order.postal_code %>
-   <%= f.hidden_field :address, :value => @order.postal_code + @order.address + @order.name %>
-   <%= f.hidden_field :name, :value => @order.name %>
-   <%= f.hidden_field :payment_method, :value => @order.payment_method %>
-   <%= f.hidden_field :postage, :value => @order.postage %>
-   <%= f.hidden_field :total_payment, :value => @subtotal %>
-   <%= f.hidden_field :status, {value: 'waiting_for_deposit'} %>
-   <!--newのaddresseをcreateに送る(モデル保存のため)-->
-   <%= f.hidden_field :address_select, :value => params[:order][:s_address] %>
-   <%= f.submit '注文を確定する', class:"btn btn-success pr-4 pl-4" %>
-  <% end %>
-</p>
+      <span class="label-2"><strong>支払方法</strong></span><%= @order.payment_method_i18n %>
+     </p>
+    <p>
+     <span class="label-2"><strong>お届け先</strong></span><%= @order.postal_code + @order.address %></br>
+     <span class="margin-3"><%= @order.name %></span>
+    </p>
+
+     <%= form_with model: @order, url: public_orders_path, method: :post do |f| %>
+     <!--hidden 隠してデータを送る-->
+      <%= f.hidden_field :customer_id, :value => current_customer.id %>
+      <%= f.hidden_field :postal_code, :value => @order.postal_code %>
+      <%= f.hidden_field :address, :value => @order.postal_code + @order.address + @order.name %>
+      <%= f.hidden_field :name, :value => @order.name %>
+      <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+      <%= f.hidden_field :postage, :value => @order.postage %>
+      <%= f.hidden_field :total_payment, :value => @subtotal %>
+      <%= f.hidden_field :status, {value: 'waiting_for_deposit'} %>
+      <!--newのaddresseをcreateに送る(モデル保存のため)-->
+      <%= f.hidden_field :address_select, :value => params[:order][:s_address] %>
+      <p class="margin-2"><%= f.submit '注文を確定する', class:"btn btn-success pr-4 pl-4" %></p>
+    <% end %>
+    </div>
   </div>
  </div>
 </div>

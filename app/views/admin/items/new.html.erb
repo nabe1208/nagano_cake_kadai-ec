@@ -1,30 +1,42 @@
+<div class="error">
+  <% if @item.errors.any? %>
+ <ul>
+  <h6>
+    <%= @item.errors.count %> error prohibited this obj from being updateed:
+  </h6>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+ </ul>
+<% end %>
+</div>
 <div class="container flex-column">
-<h3>商品新規登録</h3>
+ <h3>商品新規登録</h3>
  <div class="row justify-content-center">
   <div class="col-md-10">
    <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-   <p>
+   <p class="label">
     <%= f.label "商品画像" , class: 'pt-5 pr-5'%>
-    <%= f.file_field :image, accept: "/*", class:"" %>
+    <%= f.file_field :image, accept: "/*" %>
    </p>
-   <p>
+   <p class="label">
     <%= f.label "商品名" , class: 'pr-5'%>
-    <%= f.text_field :name, class: 'ml-3 pl-3 pr-2' %>
+    <%= f.text_field :name, class: 'ml-3' %>
    </p>
-   <p>
+   <p class="label">
     <%= f.label "商品説明" , class: 'pr-5'%>
-    <%= f.text_area :introduction,class:'pl-5 pb-5' %>
+    <%= f.text_area :introduction %>
    </p>
-   <p>
+   <p class="label">
     <%= f.label "ジャンル" , class: 'pr-5'%>
     <span><%= f.collection_select :genre_id, Genre.all, :id, :name,
     include_blank: "-- 選択してください --" %></span>
    </p>
-   <p>
+   <p class="label">
     <%= f.label "税抜価格" , class: 'pr-5'%>
-    <%= f.number_field :price, class: 'pr-4' %>
+    <%= f.number_field :price %>
    </p>
-   <p>
+   <p class="label">
     <%= f.label "販売ステータス", class: 'pr-1'%>
       <%= f.radio_button :is_active, true , class: 'pr-5'%>
       <%= f.label :item, "販売中", value: true %>
